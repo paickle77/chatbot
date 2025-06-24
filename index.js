@@ -5,7 +5,8 @@ const fetch = require('node-fetch');
 const app = express();
 app.use(bodyParser.json());
 
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
 
 app.post('/chat', async (req, res) => {
   const userMessage = req.body.message;
@@ -31,4 +32,5 @@ app.post('/chat', async (req, res) => {
   res.json({ reply });
 });
 
-app.listen(3000, () => console.log('Server chạy port 3000'));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server chạy port ${port}`));
